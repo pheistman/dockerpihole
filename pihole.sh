@@ -4,9 +4,9 @@ docker run -d \
     -p 80:80 \
     -p 443:443 \
     -e TZ="Europe/London" \
-    --dns=127.0.0.1 --dns=1.1.1.1 \
+    --dns=127.0.0.1 --dns=1.1.1.3 \
     --restart=unless-stopped \
-    pihole/pihole:latest \
+    pihole/pihole:latest 
 
 printf 'Starting up pihole container '
 for i in $(seq 1 20); do
