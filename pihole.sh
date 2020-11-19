@@ -1,12 +1,20 @@
+#!/bin/bash
+
 docker run -d \
     --name pihole \
     -p 53:53/tcp -p 53:53/udp \
     -p 80:80 \
     -p 443:443 \
     -e TZ="Europe/London" \
-    --dns=127.0.0.1 --dns=1.1.1.3 \
+    -e WEBPASSWORD= \
+    -e DNS1=1.1.1.1 \
+    -e DNS2=1.0.0.1 \
+    -e DNSSEC=true \
+    -e CONDITIONAL_FORWARDING=true \
+    -e CONDITIONAL_FORWARDING_IP=192.168.1.254 \
+    --dns=127.0.0.1 --dns=1.1.1.1 \
     --restart=unless-stopped \
-    pihole/pihole:latest 
+    pihole/pihole:latest
 
 printf 'Starting up pihole container '
 for i in $(seq 1 20); do
