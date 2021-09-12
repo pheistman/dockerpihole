@@ -10,8 +10,8 @@ docker run -d \
     -e DNS1=1.1.1.1 \
     -e DNS2=1.0.0.1 \
     -e DNSSEC=true \
-    -e CONDITIONAL_FORWARDING=true \
-    -e CONDITIONAL_FORWARDING_IP=192.168.1.254 \
+    -v $(pwd)/etc-pihole/:/etc/pihole/ \
+    -v $(pwd)/etc-dnsmasq.d/:/etc/dnsmasq.d/ \
     --dns=127.0.0.1 --dns=1.1.1.1 \
     --restart=unless-stopped \
     pihole/pihole:latest
